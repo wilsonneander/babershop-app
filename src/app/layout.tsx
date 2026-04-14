@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
   subsets: ["latin"],
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: ["400"],
   subsets: ["latin"],
 });
 
@@ -25,9 +26,9 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${outfit.variable} antialiased`}
+      className={`${instrumentSans.variable} ${instrumentSerif.variable} antialiased`}
     >
-      <body className="font-inter selection:bg-primary selection:text-primary-foreground">
+      <body className="font-sans bg-background text-foreground selection:bg-primary selection:text-foreground min-h-screen">
         {children}
       </body>
     </html>

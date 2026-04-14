@@ -107,4 +107,4 @@ npm run dev
 npm run build
 ```
 
-© 2026 RazorLine. Desenvolvido para máxima performance e elegância.
+© 2026 Wilson Neander. Desenvolvido para máxima performance e elegância.
