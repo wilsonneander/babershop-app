@@ -2,12 +2,14 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useLanguage, LanguageToggle } from '@/contexts/LanguageContext';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,13 +39,14 @@ export default function LoginPage() {
       <div className="w-full md:max-w-[480px] shrink-0 flex items-center justify-center">
         <div className="w-full max-w-[480px] flex flex-col px-[24px] md:px-[48px] py-8">
           
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="flex items-center justify-between mb-[32px]">
             <div 
-              className="mb-[32px] text-[24px]" 
+              className="text-[24px]" 
               style={{ fontFamily: "'Instrument Serif', serif" }}
             >
-              Barber&Shop
+              {t.auth.brand}
             </div>
+            <LanguageToggle />
           </motion.div>
 
           <motion.h1 
@@ -51,16 +54,16 @@ export default function LoginPage() {
             className="mb-[8px] text-[32px] font-bold"
             style={{ fontFamily: "'Instrument Sans', sans-serif" }}
           >
-            Sign in
+            {t.auth.signInTitle}
           </motion.h1>
 
           <motion.div variants={itemVariants} className="mb-[32px] text-[14px] text-[#718096]">
-            Don't have an account?{' '}
+            {t.auth.noAccount}{' '}
             <Link 
               href="/auth/register" 
               className="text-[#A443C4] hover:underline transition-colors"
             >
-              Create now
+              {t.auth.createNow}
             </Link>
           </motion.div>
 
@@ -68,10 +71,10 @@ export default function LoginPage() {
             <div className="flex flex-col gap-[16px]">
               {/* Email Input */}
               <motion.div variants={itemVariants} className="flex flex-col gap-2">
-                <label className="text-sm text-[#718096] font-medium">E-mail</label>
+                <label className="text-sm text-[#718096] font-medium">{t.auth.emailLabel}</label>
                 <input
                   type="email"
-                  placeholder="example@gmail.com"
+                  placeholder={t.auth.emailPlaceholder}
                   required
                   className="h-[48px] px-[16px] rounded-[12px] bg-[#1C1919] text-[#FFFFFF] dark:bg-[#F7FAFC] dark:text-[#4A5568] placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#A443C4]/50 transition-all border-none w-full shadow-sm"
                 />
@@ -79,11 +82,11 @@ export default function LoginPage() {
 
               {/* Password Input */}
               <motion.div variants={itemVariants} className="flex flex-col gap-2">
-                <label className="text-sm text-[#718096] font-medium">Password</label>
+                <label className="text-sm text-[#718096] font-medium">{t.auth.passwordLabel}</label>
                 <div className="relative flex items-center">
                   <input
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="••••••••"
+                    placeholder={t.auth.passwordPlaceholder}
                     required
                     className="h-[48px] w-full px-[16px] pr-[48px] rounded-[12px] bg-[#1C1919] text-[#FFFFFF] dark:bg-[#F7FAFC] dark:text-[#4A5568] placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#A443C4]/50 transition-all border-none shadow-sm"
                   />
@@ -136,7 +139,7 @@ export default function LoginPage() {
                   className="accent-[#A443C4] w-4 h-4 cursor-pointer rounded border-gray-600 bg-transparent transition-colors focus:ring-2 focus:ring-[#A443C4]/50"
                 />
                 <span className="text-[14px] text-[#718096] group-hover:text-gray-300 dark:group-hover:text-gray-600 transition-colors">
-                  Remember me
+                  {t.auth.rememberMe}
                 </span>
               </motion.label>
 
@@ -144,7 +147,7 @@ export default function LoginPage() {
                 href="/auth/forgot-password"
                 className="text-[14px] text-[#A443C4] hover:underline transition-colors"
               >
-                Forgot Password?
+                {t.auth.forgotPassword}
               </Link>
             </motion.div>
 
@@ -167,11 +170,11 @@ export default function LoginPage() {
                     className="flex items-center justify-center gap-2"
                   >
                     <Loader2 size={20} className="animate-spin" />
-                    <span>Signing in...</span>
+                    <span>{t.auth.signingInBtn}</span>
                   </motion.div>
                 ) : (
                   <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    Sign in
+                    {t.auth.signInBtn}
                   </motion.span>
                 )}
               </motion.button>

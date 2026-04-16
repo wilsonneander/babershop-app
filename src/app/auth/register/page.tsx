@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useLanguage, LanguageToggle } from '@/contexts/LanguageContext';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 
@@ -9,6 +10,7 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,13 +39,14 @@ export default function RegisterPage() {
       <div className="w-full md:max-w-[480px] shrink-0 flex items-center justify-center">
         <div className="w-full max-w-[480px] flex flex-col px-[24px] md:px-[48px] py-8">
           
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="flex items-center justify-between mb-[32px]">
             <div 
-              className="mb-[32px] text-[24px]" 
+              className="text-[24px]" 
               style={{ fontFamily: "'Instrument Serif', serif" }}
             >
-              Barber&Shop
+              {t.auth.brand}
             </div>
+            <LanguageToggle />
           </motion.div>
 
           <motion.h1 
@@ -51,16 +54,16 @@ export default function RegisterPage() {
             className="mb-[8px] text-[32px] font-bold"
             style={{ fontFamily: "'Instrument Sans', sans-serif" }}
           >
-            Create account
+            {t.auth.signUpTitle}
           </motion.h1>
 
           <motion.div variants={itemVariants} className="mb-[32px] text-[14px] text-[#718096]">
-            Already have an account?{' '}
+            {t.auth.hasAccount}{' '}
             <Link 
               href="/auth/login" 
               className="text-[#A443C4] hover:underline transition-colors"
             >
-              Sign in
+              {t.auth.signIn}
             </Link>
           </motion.div>
 
@@ -69,10 +72,10 @@ export default function RegisterPage() {
               
               {/* Name Input */}
               <motion.div variants={itemVariants} className="flex flex-col gap-2">
-                <label className="text-sm text-[#718096] font-medium">Name</label>
+                <label className="text-sm text-[#718096] font-medium">{t.auth.nameLabel}</label>
                 <input
                   type="text"
-                  placeholder="John Doe"
+                  placeholder={t.auth.namePlaceholder}
                   required
                   className="h-[48px] px-[16px] rounded-[12px] bg-[#1C1919] text-[#FFFFFF] dark:bg-[#F7FAFC] dark:text-[#4A5568] placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#A443C4]/50 transition-all border-none w-full shadow-sm"
                 />
@@ -80,10 +83,10 @@ export default function RegisterPage() {
 
               {/* Email Input */}
               <motion.div variants={itemVariants} className="flex flex-col gap-2">
-                <label className="text-sm text-[#718096] font-medium">E-mail</label>
+                <label className="text-sm text-[#718096] font-medium">{t.auth.emailLabel}</label>
                 <input
                   type="email"
-                  placeholder="example@gmail.com"
+                  placeholder={t.auth.emailPlaceholder}
                   required
                   className="h-[48px] px-[16px] rounded-[12px] bg-[#1C1919] text-[#FFFFFF] dark:bg-[#F7FAFC] dark:text-[#4A5568] placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#A443C4]/50 transition-all border-none w-full shadow-sm"
                 />
@@ -91,11 +94,11 @@ export default function RegisterPage() {
 
               {/* Password Input */}
               <motion.div variants={itemVariants} className="flex flex-col gap-2">
-                <label className="text-sm text-[#718096] font-medium">Password</label>
+                <label className="text-sm text-[#718096] font-medium">{t.auth.passwordLabel}</label>
                 <div className="relative flex items-center">
                   <input
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="••••••••"
+                    placeholder={t.auth.passwordPlaceholder}
                     required
                     className="h-[48px] w-full px-[16px] pr-[48px] rounded-[12px] bg-[#1C1919] text-[#FFFFFF] dark:bg-[#F7FAFC] dark:text-[#4A5568] placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#A443C4]/50 transition-all border-none shadow-sm"
                   />
@@ -136,11 +139,11 @@ export default function RegisterPage() {
 
               {/* Confirm Password Input */}
               <motion.div variants={itemVariants} className="flex flex-col gap-2">
-                <label className="text-sm text-[#718096] font-medium">Confirm Password</label>
+                <label className="text-sm text-[#718096] font-medium">{t.auth.confirmPasswordLabel}</label>
                 <div className="relative flex items-center">
                   <input
                     type={showConfirmPassword ? 'text' : 'password'}
-                    placeholder="••••••••"
+                    placeholder={t.auth.passwordPlaceholder}
                     required
                     className="h-[48px] w-full px-[16px] pr-[48px] rounded-[12px] bg-[#1C1919] text-[#FFFFFF] dark:bg-[#F7FAFC] dark:text-[#4A5568] placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#A443C4]/50 transition-all border-none shadow-sm"
                   />
@@ -199,11 +202,11 @@ export default function RegisterPage() {
                     className="flex items-center justify-center gap-2"
                   >
                     <Loader2 size={20} className="animate-spin" />
-                    <span>Creating account...</span>
+                    <span>{t.auth.signingUpBtn}</span>
                   </motion.div>
                 ) : (
                   <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    Sign up
+                    {t.auth.signUpBtn}
                   </motion.span>
                 )}
               </motion.button>
