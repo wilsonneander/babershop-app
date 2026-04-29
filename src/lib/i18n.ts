@@ -23,6 +23,17 @@ export const translations = {
       signingInBtn: "Signing in...",
       signUpBtn: "Sign up",
       signingUpBtn: "Creating account...",
+    },
+    forgotPassword: {
+      title: "Reset password",
+      subtitle: "Enter your email and we'll send you a reset link.",
+      emailLabel: "E-mail",
+      emailPlaceholder: "example@gmail.com",
+      submitBtn: "Send reset link",
+      submittingBtn: "Sending...",
+      successTitle: "Check your inbox",
+      successSubtitle: "If an account with that email exists, you'll receive a link to reset your password.",
+      backToLogin: "Back to sign in",
     }
   },
   pt: {
@@ -47,6 +58,17 @@ export const translations = {
       signingInBtn: "Entrando...",
       signUpBtn: "Cadastrar",
       signingUpBtn: "Criando conta...",
+    },
+    forgotPassword: {
+      title: "Redefinir senha",
+      subtitle: "Informe seu e-mail e enviaremos um link de redefinição.",
+      emailLabel: "E-mail",
+      emailPlaceholder: "exemplo@gmail.com",
+      submitBtn: "Enviar link",
+      submittingBtn: "Enviando...",
+      successTitle: "Verifique seu e-mail",
+      successSubtitle: "Se houver uma conta com esse e-mail, você receberá um link para redefinir sua senha.",
+      backToLogin: "Voltar para entrar",
     }
   }
 };
