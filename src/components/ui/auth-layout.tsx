@@ -5,13 +5,8 @@ import { motion, Variants } from "framer-motion";
 
 interface AuthLayoutProps {
   children: React.ReactNode;
-  /** URL of the hero image shown in the right column */
   imageUrl: string;
   imageAlt?: string;
-  /**
-   * Slide direction for the page entrance animation.
-   * Login slides from the left (`-20`), register from the right (`+20`).
-   */
   slideDirection?: "left" | "right";
 }
 
@@ -32,7 +27,8 @@ export function AuthLayout({
 
   return (
     <motion.div
-      className="flex min-h-screen w-full bg-[#0a0a0a] text-white font-sans"
+      className="flex min-h-screen w-full font-sans transition-colors duration-300"
+      style={{ backgroundColor: "var(--auth-bg)", color: "var(--auth-text)" }}
       initial="hidden"
       animate="show"
       variants={pageVariants}
@@ -46,7 +42,8 @@ export function AuthLayout({
 
       {/* Right Column — Image */}
       <motion.div
-        className="hidden md:block flex-1 relative overflow-hidden bg-[#0a0a0a]"
+        className="hidden md:block flex-1 relative overflow-hidden"
+        style={{ backgroundColor: "var(--auth-bg)" }}
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{
           opacity: 1,
@@ -59,14 +56,18 @@ export function AuthLayout({
           alt={imageAlt}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Soft overlay */}
-        <div className="absolute inset-0 bg-linear-to-l from-transparent to-[#0a0a0a]/50" />
+        {/* Soft overlay — light: barely visible, dark: stronger */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to left, transparent 40%, var(--auth-overlay) 100%)",
+          }}
+        />
       </motion.div>
     </motion.div>
   );
 }
 
-/** Shared animation variants for staggered child elements inside AuthLayout */
 export const authItemVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },

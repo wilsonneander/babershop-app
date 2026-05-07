@@ -37,7 +37,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       return (
         <div className="flex flex-col gap-2 w-full">
           {label && (
-            <label className="text-sm text-[#718096] font-medium">
+            <label
+              className="text-sm font-medium"
+              style={{ color: "var(--auth-text-muted)" }}
+            >
               {label}
             </label>
           )}
@@ -45,10 +48,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <input
               type={type}
               className={cn(
-                "h-[48px] w-full px-[16px] rounded-[12px] bg-[#1C1919] text-[#FFFFFF] placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#A443C4]/50 transition-all border-none shadow-sm",
+                "h-[48px] w-full px-[16px] rounded-[12px] focus:outline-none focus:ring-2 focus:ring-[#A443C4]/50 transition-all border-none shadow-sm",
                 rightElement && "pr-[48px]",
                 className
               )}
+              style={{
+                backgroundColor: "var(--auth-input-bg)",
+                color: "var(--auth-input-text)",
+                // placeholder color handled via global CSS below
+              }}
               ref={ref}
               onFocus={(e) => {
                 setIsFocused(true);

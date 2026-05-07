@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useLanguage, LanguageToggle } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { ThemeToggle } from '@/contexts/ThemeContext';
 import { Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthLayout, authItemVariants } from '@/components/ui/auth-layout';
@@ -26,7 +27,7 @@ export default function LoginPage() {
       imageAlt="Barbershop experience"
       slideDirection="left"
     >
-      {/* Brand + language toggle */}
+      {/* Brand + theme toggle */}
       <motion.div variants={authItemVariants} className="flex items-center justify-between mb-[32px]">
         <div
           className="text-[24px]"
@@ -34,7 +35,7 @@ export default function LoginPage() {
         >
           {t.auth.brand}
         </div>
-        <LanguageToggle />
+        <ThemeToggle />
       </motion.div>
 
       <motion.h1

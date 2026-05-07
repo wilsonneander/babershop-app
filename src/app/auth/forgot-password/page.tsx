@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useLanguage, LanguageToggle } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { ThemeToggle } from '@/contexts/ThemeContext';
 import { CheckCircle2, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthLayout, authItemVariants } from '@/components/ui/auth-layout';
@@ -31,7 +32,7 @@ export default function ForgotPasswordPage() {
       imageAlt="Barbershop tools"
       slideDirection="left"
     >
-      {/* Brand + language toggle */}
+      {/* Brand + theme toggle */}
       <motion.div variants={authItemVariants} className="flex items-center justify-between mb-[32px]">
         <div
           className="text-[24px]"
@@ -39,7 +40,7 @@ export default function ForgotPasswordPage() {
         >
           {t.auth.brand}
         </div>
-        <LanguageToggle />
+        <ThemeToggle />
       </motion.div>
 
       <AnimatePresence mode="wait">
